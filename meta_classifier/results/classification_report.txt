@@ -1,0 +1,22 @@
+Meta-Classifier Classification Report
+=============================================
+
+                      precision    recall  f1-score   support
+
+     broken_handrail       1.00      1.00      1.00         1
+ construction_debris       1.00      1.00      1.00         2
+    cracked_pavement       1.00      0.67      0.80         3
+    damaged_sidewalk       0.67      1.00      0.80         2
+damaged_warning_sign       1.00      1.00      1.00         1
+       fallen_branch       1.00      1.00      1.00         1
+ obstacle_on_walkway       1.00      1.00      1.00         1
+          open_drain       1.00      1.00      1.00         1
+             pothole       1.00      1.00      1.00         2
+        traffic_cone       1.00      1.00      1.00         2
+   uncovered_manhole       1.00      1.00      1.00         2
+     uneven_pavement       1.00      1.00      1.00         1
+  wet_slippery_floor       1.00      1.00      1.00         2
+
+            accuracy                           0.95        21
+           macro avg       0.97      0.97      0.97        21
+        weighted avg       0.97      0.95      0.95        21

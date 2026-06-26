@@ -69,12 +69,24 @@ The annotated dataset should not be made public in this GitHub repository. It sh
 
 ## Current Integration Checklist
 
-- [ ] Add four members' YOLO model files and `data.yaml` files.
-- [ ] Fill each member's model card.
-- [ ] Complete the global label mapping table.
-- [ ] Run all YOLO models on a shared test set.
-- [ ] Build feature vectors for the meta-classifier.
-- [ ] Train and evaluate the meta-classifier.
+- [x] Add four members' YOLO model files and `data.yaml` files.
+- [x] Fill each member's model card.
+- [x] Complete the global label mapping table.
+- [x] Build feature vectors for the meta-classifier.
+- [x] Train and evaluate the meta-classifier.
+- [x] Add meta-classifier conflict resolution examples.
+- [ ] Run all YOLO models on a shared live/mobile test set.
 - [ ] Integrate inference into the mobile app.
 - [ ] Connect LLM recommendation output.
 - [ ] Prepare report figures, tables, screenshots, and screencast.
+
+## Meta-Classifier Status
+
+The `meta_classifier/` folder contains the prototype neural-network meta-classifier, feature extraction notebook, training notebook, inference pipeline, label mapping, trained model, and evaluation results.
+
+Key evaluation files:
+
+- `meta_classifier/results/metrics.json`
+- `meta_classifier/results/classification_report.txt`
+- `meta_classifier/results/confusion_matrix.png`
+- `meta_classifier/conflict_resolution_examples.md`

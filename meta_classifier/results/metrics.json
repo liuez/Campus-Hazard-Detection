@@ -1,0 +1,26 @@
+{
+    "dataset_size": 105,
+    "train_rows": 84,
+    "test_rows": 21,
+    "num_classes": 13,
+    "classes": [
+        "broken_handrail",
+        "construction_debris",
+        "cracked_pavement",
+        "damaged_sidewalk",
+        "damaged_warning_sign",
+        "fallen_branch",
+        "obstacle_on_walkway",
+        "open_drain",
+        "pothole",
+        "traffic_cone",
+        "uncovered_manhole",
+        "uneven_pavement",
+        "wet_slippery_floor"
+    ],
+    "accuracy": 0.9524,
+    "macro_precision": 0.9744,
+    "macro_recall": 0.9744,
+    "macro_f1_score": 0.9692,
+    "note": "Prototype meta-classifier trained using ensemble-generated hazard detection samples. Results should be interpreted as prototype evaluation due to limited dataset size."
+}
