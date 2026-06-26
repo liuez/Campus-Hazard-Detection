@@ -47,7 +47,7 @@ Campus-Hazard-Detection/
 | Member | Model Folder | Focus Area | Five Hazard Classes | Overlap Class |
 |---|---|---|---|---|
 | Member 1 | `ml_models/member1_walkway_surface/` | Walkway and surface hazards | `pothole`, `cracked_pavement`, `wet_slippery_floor`, `surface_damage`, `damaged_sidewalk` | To be confirmed with other members |
-| Member 2 | `ml_models/member2_obstruction/` | Obstruction hazards | To be filled | To be filled |
+| Member 2 | `ml_models/member2_obstruction/` | Obstruction hazards | `obstacle_on_walkway`, `construction_debris`, `fallen_branch`, `traffic_cone`, `wet_slippery_floor` | `wet_slippery_floor` overlaps with Member 1 |
 | Member 3 | `ml_models/member3_drainage/` | Drainage and road hazards | To be filled | To be filled |
 | Member 4 | `ml_models/member4_access_boundary/` | Access and boundary hazards | To be filled | To be filled |
 

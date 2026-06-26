@@ -1,0 +1,10 @@
+train: private_dataset/train/images
+val: private_dataset/valid/images
+
+nc: 5
+names:
+  0: obstacle_on_walkway
+  1: construction_debris
+  2: fallen_branch
+  3: traffic_cone
+  4: wet_slippery_floor

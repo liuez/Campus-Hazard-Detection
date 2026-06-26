@@ -9,7 +9,11 @@ Use this table to harmonise labels from the four member YOLO models before meta-
 | Member 1 | `wet_slippery_floor` | Wet or slippery floor | Road and walkway hazard | exact / synonym | Normalise with wet floor, slippery floor, or wet walkway labels. |
 | Member 1 | `surface_damage` | Surface damage | Road and walkway hazard | generalisation | Treat as a parent/general label when the specific damage type is unclear. |
 | Member 1 | `damaged_sidewalk` | Damaged sidewalk | Road and walkway hazard | contextual | Use zone/context to distinguish sidewalk damage from road pavement damage. |
-| Member 2 | To be filled | To be filled | To be filled | exact / synonym / generalisation / contextual | To be filled |
+| Member 2 | `obstacle_on_walkway` | Obstacle on walkway | Obstruction and sharp object hazard | contextual | Use zone/context to distinguish normal walkway obstruction from emergency-route blockage. |
+| Member 2 | `construction_debris` | Construction debris | Obstruction and sharp object hazard | exact / contextual | Keep as a specific obstruction label; severity may increase near walkways or emergency exits. |
+| Member 2 | `fallen_branch` | Fallen branch | Obstruction and sharp object hazard | exact / contextual | Keep as a specific obstruction label; context helps distinguish walkway, road, or public facility hazards. |
+| Member 2 | `traffic_cone` | Traffic cone | Obstruction and access hazard | contextual | Treat as a hazard only when it blocks access, walkway flow, or emergency routes. |
+| Member 2 | `wet_slippery_floor` | Wet or slippery floor | Road and walkway hazard | exact overlap | Overlaps with Member 1 `wet_slippery_floor`; use confidence, IoU, and model reliability in meta-classifier. |
 | Member 3 | To be filled | To be filled | To be filled | exact / synonym / generalisation / contextual | To be filled |
 | Member 4 | To be filled | To be filled | To be filled | exact / synonym / generalisation / contextual | To be filled |
 
