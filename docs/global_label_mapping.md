@@ -15,7 +15,11 @@ Use this table to harmonise labels from the four member YOLO models before meta-
 | Member 2 | `traffic_cone` | Traffic cone | Obstruction and access hazard | contextual | Treat as a hazard only when it blocks access, walkway flow, or emergency routes. |
 | Member 2 | `wet_slippery_floor` | Wet or slippery floor | Road and walkway hazard | exact overlap | Overlaps with Member 1 `wet_slippery_floor`; use confidence, IoU, and model reliability in meta-classifier. |
 | Member 3 | To be filled | To be filled | To be filled | exact / synonym / generalisation / contextual | To be filled |
-| Member 4 | To be filled | To be filled | To be filled | exact / synonym / generalisation / contextual | To be filled |
+| Member 4 | `missing_barricade` | Missing barricade | Boundary and access hazard | exact / contextual | Keep as a specific access-control hazard; severity depends on restricted or construction zone context. |
+| Member 4 | `damaged_warning_sign` | Damaged warning sign | Boundary and access hazard | exact / contextual | Keep as a specific warning-sign hazard; use location context for severity and LLM recommendation. |
+| Member 4 | `broken_handrail` | Broken handrail | Building and structural hazard | exact | Keep as a specific structural safety label. |
+| Member 4 | `blocked_walkway` | Blocked walkway | Obstruction and access hazard | contextual | Contextually overlaps with Member 2 `obstacle_on_walkway`; use zone/context and IoU agreement for final decision. |
+| Member 4 | `damaged_sidewalk` | Damaged sidewalk | Road and walkway hazard | exact overlap | Overlaps with Member 1 `damaged_sidewalk`; use confidence, IoU, and model reliability in meta-classifier. |
 
 ## Relationship Definitions
 

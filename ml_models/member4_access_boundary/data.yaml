@@ -1,0 +1,10 @@
+train: private_dataset/train/images
+val: private_dataset/valid/images
+
+nc: 5
+names:
+  0: missing_barricade
+  1: damaged_warning_sign
+  2: broken_handrail
+  3: blocked_walkway
+  4: damaged_sidewalk
