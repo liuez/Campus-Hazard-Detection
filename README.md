@@ -46,7 +46,7 @@ Campus-Hazard-Detection/
 
 | Member | Model Folder | Focus Area | Five Hazard Classes | Overlap Class |
 |---|---|---|---|---|
-| Member 1 | `ml_models/member1_walkway_surface/` | Walkway and surface hazards | To be filled | To be filled |
+| Member 1 | `ml_models/member1_walkway_surface/` | Walkway and surface hazards | `pothole`, `cracked_pavement`, `wet_slippery_floor`, `surface_damage`, `damaged_sidewalk` | To be confirmed with other members |
 | Member 2 | `ml_models/member2_obstruction/` | Obstruction hazards | To be filled | To be filled |
 | Member 3 | `ml_models/member3_drainage/` | Drainage and road hazards | To be filled | To be filled |
 | Member 4 | `ml_models/member4_access_boundary/` | Access and boundary hazards | To be filled | To be filled |
@@ -78,4 +78,3 @@ The annotated dataset should not be made public in this GitHub repository. It sh
 - [ ] Integrate inference into the mobile app.
 - [ ] Connect LLM recommendation output.
 - [ ] Prepare report figures, tables, screenshots, and screencast.
-

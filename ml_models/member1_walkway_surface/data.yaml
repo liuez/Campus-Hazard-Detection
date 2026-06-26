@@ -1,0 +1,10 @@
+train: train/images
+val: valid/images
+
+nc: 5
+names:
+  0: pothole
+  1: cracked_pavement
+  2: wet_slippery_floor
+  3: surface_damage
+  4: damaged_sidewalk
