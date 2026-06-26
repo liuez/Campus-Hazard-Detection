@@ -1,0 +1,35 @@
+{
+  "examples": [
+    {
+      "input": {
+        "hazard_class": "uncovered_manhole",
+        "general_category": "Road and walkway hazard",
+        "location_zone": "Campus road",
+        "severity": "High",
+        "confidence": 0.91
+      },
+      "recommended_action": "Place a temporary barricade, keep pedestrians away, and report the uncovered manhole to campus facilities for urgent repair."
+    },
+    {
+      "input": {
+        "hazard_class": "wet_slippery_floor",
+        "general_category": "Road and walkway hazard",
+        "location_zone": "Lecture hall corridor",
+        "severity": "Medium",
+        "confidence": 0.86
+      },
+      "recommended_action": "Place a wet-floor warning sign, restrict access if needed, and request cleaning staff to dry the corridor promptly."
+    },
+    {
+      "input": {
+        "hazard_class": "broken_handrail",
+        "general_category": "Building and structural hazard",
+        "location_zone": "Academic block staircase",
+        "severity": "High",
+        "confidence": 0.88
+      },
+      "recommended_action": "Warn users to avoid the staircase side and report the broken handrail to facilities for urgent inspection and repair."
+    }
+  ]
+}
+
