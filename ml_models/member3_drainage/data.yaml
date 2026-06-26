@@ -1,0 +1,10 @@
+train: private_dataset/train/images
+val: private_dataset/valid/images
+
+nc: 5
+names:
+  0: open_drain
+  1: uncovered_manhole
+  2: pothole
+  3: uneven_pavement
+  4: cracked_pavement

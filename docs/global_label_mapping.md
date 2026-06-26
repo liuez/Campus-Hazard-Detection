@@ -14,7 +14,11 @@ Use this table to harmonise labels from the four member YOLO models before meta-
 | Member 2 | `fallen_branch` | Fallen branch | Obstruction and sharp object hazard | exact / contextual | Keep as a specific obstruction label; context helps distinguish walkway, road, or public facility hazards. |
 | Member 2 | `traffic_cone` | Traffic cone | Obstruction and access hazard | contextual | Treat as a hazard only when it blocks access, walkway flow, or emergency routes. |
 | Member 2 | `wet_slippery_floor` | Wet or slippery floor | Road and walkway hazard | exact overlap | Overlaps with Member 1 `wet_slippery_floor`; use confidence, IoU, and model reliability in meta-classifier. |
-| Member 3 | To be filled | To be filled | To be filled | exact / synonym / generalisation / contextual | To be filled |
+| Member 3 | `open_drain` | Open drain | Road and walkway hazard | generalisation / contextual | Keep as a specific ground-hole hazard; can be grouped under hole on road or ground for recommended actions. |
+| Member 3 | `uncovered_manhole` | Uncovered manhole | Road and walkway hazard | generalisation / contextual | Keep as a specific high-severity ground-hole hazard; can be grouped under hole on road or ground. |
+| Member 3 | `pothole` | Pothole | Road and walkway hazard | exact overlap | Overlaps with Member 1 `pothole`; use confidence, IoU, and model reliability in meta-classifier. |
+| Member 3 | `uneven_pavement` | Uneven pavement | Road and walkway hazard | synonym / contextual | Normalise with similar labels such as uneven floor or surface damage when context supports it. |
+| Member 3 | `cracked_pavement` | Cracked pavement | Road and walkway hazard | exact overlap | Overlaps with Member 1 `cracked_pavement`; use confidence, IoU, and model reliability in meta-classifier. |
 | Member 4 | `missing_barricade` | Missing barricade | Boundary and access hazard | exact / contextual | Keep as a specific access-control hazard; severity depends on restricted or construction zone context. |
 | Member 4 | `damaged_warning_sign` | Damaged warning sign | Boundary and access hazard | exact / contextual | Keep as a specific warning-sign hazard; use location context for severity and LLM recommendation. |
 | Member 4 | `broken_handrail` | Broken handrail | Building and structural hazard | exact | Keep as a specific structural safety label. |
