@@ -2,8 +2,10 @@
 
 import itertools
 import json
-import sys
+import os
 import tempfile
+import urllib.error
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -19,9 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent
 REPO_ROOT = BASE_DIR.parents[1]
 META_DIR = REPO_ROOT / "meta_classifier"
 EVIDENCE_DIR = BASE_DIR / "evidence"
-
-sys.path.insert(0, str(REPO_ROOT))
-from llm_recommendation.gemini_recommendation import recommend_action
 
 MODEL_SPECS = [
     {
@@ -107,14 +106,118 @@ FEATURE_COLUMNS: list[str] = joblib.load(META_DIR / "feature_columns.joblib")
 LABEL_ENCODER = joblib.load(META_DIR / "label_encoder.joblib")
 
 
-def recommendation_for(label: str, category: str, severity: str, zone: str) -> str:
-    return recommend_action(
-        {
-            "hazard_class": label,
-            "general_category": category,
-            "location_zone": zone,
-            "severity": severity.title(),
-        }
+def fallback_recommendation_for(label: str, category: str, severity: str, zone: str) -> str:
+    readable_label = label.replace("_", " ")
+    if severity == "high":
+        return f"Mark the area immediately, restrict access if possible, and report the {readable_label} in {zone} to campus maintenance for urgent action."
+    if severity == "medium":
+        return f"Record the {readable_label}, warn nearby users, and submit a maintenance report for inspection and repair in {zone}."
+    return f"Monitor the {readable_label} in {zone}, keep evidence, and report it if it creates obstruction or safety risk."
+
+
+def parse_gemini_text(payload: dict[str, Any]) -> str:
+    if isinstance(payload.get("output_text"), str):
+        return payload["output_text"].strip()
+
+    output = payload.get("output")
+    if isinstance(output, list):
+        parts: list[str] = []
+        for item in output:
+            if isinstance(item, dict) and isinstance(item.get("text"), str):
+                parts.append(item["text"])
+        if parts:
+            return " ".join(parts).strip()
+
+    steps = payload.get("steps")
+    if isinstance(steps, list):
+        parts = []
+        for step in steps:
+            for item in step.get("output", []) if isinstance(step, dict) else []:
+                if isinstance(item, dict) and isinstance(item.get("text"), str):
+                    parts.append(item["text"])
+        if parts:
+            return " ".join(parts).strip()
+
+    candidates = payload.get("candidates")
+    if isinstance(candidates, list) and candidates:
+        content = candidates[0].get("content", {})
+        parts = content.get("parts", []) if isinstance(content, dict) else []
+        texts = [part.get("text", "") for part in parts if isinstance(part, dict)]
+        return " ".join(texts).strip()
+
+    return ""
+
+
+def gemini_recommendation_for(label: str, category: str, severity: str, zone: str, confidence: float) -> str | None:
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        return None
+
+    readable_label = label.replace("_", " ")
+    readable_category = category.replace("_", " ")
+    prompt = (
+        "You are a campus safety assistant. Write one concise maintenance action "
+        "for a mobile hazard detection app. Use plain English, be practical, and "
+        "do not mention AI uncertainty. Keep it to one or two sentences.\n\n"
+        f"Hazard: {readable_label}\n"
+        f"Category: {readable_category}\n"
+        f"Severity: {severity}\n"
+        f"Confidence: {confidence * 100:.1f}%\n"
+        f"Campus zone: {zone}\n"
+    )
+    model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    payload = {
+        "systemInstruction": {
+            "parts": [
+                {
+                    "text": (
+                        "Generate safety recommendations for campus maintenance reports. "
+                        "Avoid medical, legal, or emergency guarantees."
+                    )
+                }
+            ]
+        },
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": prompt,
+                    }
+                ]
+            }
+        ],
+        "generationConfig": {
+            "temperature": 0.2,
+        },
+    }
+    request = urllib.request.Request(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=12) as response:
+            response_payload = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as error:
+        details = error.read().decode("utf-8", errors="replace")[:500]
+        print(f"Gemini recommendation fallback used: HTTP {error.code} {details}")
+        return None
+    except (OSError, urllib.error.URLError, json.JSONDecodeError) as error:
+        print(f"Gemini recommendation fallback used: {error}")
+        return None
+
+    text = parse_gemini_text(response_payload)
+    return text or None
+
+
+def recommendation_for(label: str, category: str, severity: str, zone: str, confidence: float) -> str:
+    return (
+        gemini_recommendation_for(label, category, severity, zone, confidence)
+        or fallback_recommendation_for(label, category, severity, zone)
     )
 
 
@@ -226,6 +329,10 @@ def health() -> dict[str, Any]:
             "features": len(FEATURE_COLUMNS),
             "classes": [str(label) for label in LABEL_ENCODER.classes_],
         },
+        "gemini": {
+            "configured": bool(os.getenv("GEMINI_API_KEY")),
+            "model": os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
+        },
     }
 
 
@@ -322,6 +429,7 @@ async def detect(
             final_detection["category"],
             final_detection["severity"],
             zone,
+            final_detection["confidence"],
         ),
     }
     return {
