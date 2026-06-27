@@ -1,19 +1,7 @@
 # Report
 
-Place the technical report, figures, tables, screenshots, and supporting evidence in this folder.
+The final technical report is available here:
 
-## Required Report Sections
+[Download the Campus Hazard Detection Technical Report](technical_report.pdf)
 
-1. Introduction
-2. Campus zones and hazard classes
-3. System architecture
-4. Data collection and preparation
-5. Individual YOLO model training
-6. Meta-classifier design
-7. Mobile app implementation
-8. Mobile app testing
-9. Results and discussion
-10. Challenges and limitations
-11. Conclusion
-12. Appendices
-
+The report covers the four YOLO models, global label mapping, neural meta-classifier, Flutter mobile application, Gemini recommendations, testing, results, limitations, conclusion, and development logbook.

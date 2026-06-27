@@ -37,6 +37,7 @@ Campus-Hazard-Detection/
 |-- report/
 |   |-- figures/
 |   |-- tables/
+|   |-- technical_report.pdf
 |   `-- README.md
 |-- docs/
 |   |-- Global_Label_Mapping_Table.xlsx
