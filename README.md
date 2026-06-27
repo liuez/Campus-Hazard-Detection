@@ -42,12 +42,17 @@ Campus-Hazard-Detection/
 |-- docs/
 |   |-- Global_Label_Mapping_Table.xlsx
 |   `-- screencast_link.md
+|-- CC_License_Statement.pdf
 `-- README.md
 ```
 
 ## Project Screencast
 
 [Watch the Campus Hazard Detection project demonstration](https://drive.google.com/file/d/1CzNL2_CdHcEAqso6Kb3hkSigkdfNuNHR/view?usp=sharing)
+
+## License Statement
+
+See [CC / License Statement](CC_License_Statement.pdf) for the licensing conditions covering original documentation, source code, datasets, model artifacts, third-party components, and responsible use.
 
 ## Member Model Summary
 
