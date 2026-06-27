@@ -39,12 +39,14 @@ Campus-Hazard-Detection/
 |   |-- tables/
 |   `-- README.md
 |-- docs/
-|   |-- global_label_mapping.md
-|   |-- member_summary_template.md
-|   |-- testing_plan.md
-|   `-- screencast_outline.md
+|   |-- Global_Label_Mapping_Table.xlsx
+|   `-- screencast_link.md
 `-- README.md
 ```
+
+## Project Screencast
+
+[Watch the Campus Hazard Detection project demonstration](https://drive.google.com/file/d/1CzNL2_CdHcEAqso6Kb3hkSigkdfNuNHR/view?usp=sharing)
 
 ## Member Model Summary
 
