@@ -18,6 +18,10 @@ This repository integrates:
 ```text
 Campus-Hazard-Detection/
 |-- mobile_app/
+|   |-- lib/
+|   |-- android/
+|   |-- web/
+|   |-- backend/
 |   `-- README.md
 |-- ml_models/
 |   |-- member1_walkway_surface/
@@ -76,8 +80,8 @@ The annotated dataset should not be made public in this GitHub repository. It sh
 - [x] Train and evaluate the meta-classifier.
 - [x] Add meta-classifier conflict resolution examples.
 - [ ] Run all YOLO models on a shared live/mobile test set.
-- [ ] Integrate inference into the mobile app.
-- [ ] Connect LLM recommendation output.
+- [x] Integrate inference into the mobile app.
+- [x] Connect LLM recommendation output.
 - [ ] Prepare report figures, tables, screenshots, and screencast.
 
 ## Meta-Classifier Status
